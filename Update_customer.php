@@ -14,8 +14,8 @@
 	include_once("connection.php");
 $query = "SELECT CustName, Address, email, telephone
 			From customer where Username= '".$_SESSION["us"]."'";
-	$result = mysqli_query($conn,$query) or die(mysqli_error($conn));
-	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+	$result = pg_query($conn,$query) or die(pg_error($conn));
+	$row = pg_fetch_array($result, PGSQL_ASSOC);
 
 	$us = $_SESSION["us"];
 	$email = $row["email"];
@@ -35,12 +35,12 @@ if(isset($_POST['btnUpdate'])){
 			$pass = md5($_POST['txtPass1']);
 
 			$sq = "UPDATE customer SET Custname='$fullname', Address='$address', telephone='$telephone', password='$pass' where Username ='".$_SESSION["us"]."'";
-			mysqli_query($conn,$sq) or die(mysqli_error($conn));
+			pg_query($conn,$sq) or die(pg_error($conn));
 			echo "<script> alert('Update succeed')</script>";
 		}
 		else{
 			$sq = "UPDATE customer SET Custname='$fullname', Address='$address', telephone='$telephone' where Username ='".$_SESSION["us"]."'";
-			mysqli_query($conn,$sq) or die(mysqli_error($conn));
+			pg_query($conn,$sq) or die(pg_error($conn));
 			echo "<script> alert('Update succeed')</script>";
 		}
 		echo '<meta http-equiv="refresh" content="0; URL=?page=index"';
