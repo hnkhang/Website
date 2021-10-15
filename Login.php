@@ -14,7 +14,7 @@
     if(isset($_POST['btnLogin']))
     {
         $us = $_POST['txtUsername'];
-        $us = pg_real_escape_string($conn, $us);
+        $us = pg_escape_string($conn, $us);
         $pa = $_POST['txtPass'];
         $err = "";
         if($us==""){
@@ -31,7 +31,7 @@
             $pass = md5($pa);
             $res = pg_query($conn, "Select Username, Password, state from customer where Username='$us' and Password='$pass'") 
             or die(pg_error($conn));
-            $row = pg_fetch_array($res, PGSQL_ASSOC);
+            $row = pg_fetch_array($res, pg_ASSOC);
             if(pg_num_rows($res)==1){
                 $_SESSION["us"] =$us;
                 $_SESSION["admin"] = $row["state"]; 

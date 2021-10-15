@@ -32,8 +32,8 @@
             <?php
                 include_once("connection.php");
                 $NO = 1;
-                $result = pg_query($conn,"SELECT * FROM category");
-                while($row=pg_fetch_array($result, PGSQL_ASSOC))
+                $result = mysqli_query($conn,"SELECT * FROM category");
+                while($row=mysqli_fetch_array($result, MYSQLI_ASSOC))
                 {
             ?>
 			<tr>
@@ -51,8 +51,8 @@
                 if(isset($_GET["function"])=="del"){
                     if(isset($_GET["id"])){
                         $id = $_GET["id"];
-                        pg_query($conn, "DELETE From product where Cat_ID='$id'");
-                        pg_query($conn, "DELETE From Category where Cat_ID='$id'");
+                        mysqli_query($conn, "DELETE From product where Cat_ID='$id'");
+                        mysqli_query($conn, "DELETE From Category where Cat_ID='$id'");
                     }
                 }
             ?>
