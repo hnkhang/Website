@@ -42,10 +42,10 @@
         else{
             include_once("connection.php");
             $pass = md5($pass1);
-            $sq = "select * from customer where Username='$us' or email='$email'";
+            $sq = "SELECT * from public.customer where username='$us' or email='$email'";
             $res = pg_query($conn,$sq);
             if(pg_num_rows($res)==0){
-                pg_query($conn,"INSERT INTO customer (Username, Password, CustName, gender, Address, telephone, email, CusDate, CusMonth, CusYear, SSN, ActiveCode, state)
+                pg_query($conn,"INSERT INTO customer (username, password, custName, gender, address, telephone, email, cusDate, cusMonth, cusYear, ssn, activecode, state)
                 VALUES ('$us', '$pass', '$fullname', '$sex', '$address', '$tel', '$email', $date, $month, $year, '', '', 0)") or die(pg_error($conn));
                 echo "<script> alert('You have registered successfully')</script>";
             }

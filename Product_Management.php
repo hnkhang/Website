@@ -53,11 +53,11 @@ include_once("connection.php");
 			<tbody>
             <?php
             				$No = 1;
-                $result = mysqli_query($conn, "SELECT Product_ID, Product_Name, Price, Pro_image, Cat_Name 
-                From Product a, Category b
-                where a.Cat_ID = b.Cat_ID order by Price DESC ");
+                $result = pg_query($conn, "SELECT product_id, product_name, price, pro_image, cat_name 
+                From product a, category b
+                where a.Cat_ID = b.Cat_ID order by price DESC ");
 
-                while($row=mysqli_fetch_array($result, MYSQLI_ASSOC))
+                while($row=pg_fetch_array($result,NULL,  PGSQL_ASSOC))
                 {
 			?>
 			<tr>

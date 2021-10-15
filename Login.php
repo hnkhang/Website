@@ -29,7 +29,7 @@
         else{
             include_once("connection.php");
             $pass = md5($pa);
-            $res = pg_query($conn, "Select Username, Password, state from customer where Username='$us' and Password='$pass'") 
+            $res = pg_query($conn, "SELECT username, password, state from public.customer where username='$us' AND password='$pass'") 
             or die(pg_error($conn));
             $row = pg_fetch_array($res, NULL, PGSQL_ASSOC);
             if(pg_num_rows($res)==1){
